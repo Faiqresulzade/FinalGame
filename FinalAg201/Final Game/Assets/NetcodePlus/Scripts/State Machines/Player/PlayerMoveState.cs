@@ -1,5 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -16,18 +14,24 @@ public class PlayerMoveState : PlayerBaseState
     public override void Enter()
     {
         StateMachine.Detector.OnDetectFloorSwitch += OnDetectFloorSwitch;
-        //StateMachine.Detector.OnCoinDetect += OnCoinDetect;
     }
 
     private void OnDetectFloorSwitch(Collider other)
     {
-        StateMachine.Animator.SetTrigger("Open");
+        for (int i = 0; i < StateMachine.Animator.Count; i++)
+        {
+            StateMachine.Animator[i].SetTrigger("Open");
+
+        }
+
         StateMachine.Wait(3f, () =>
         {
-            StateMachine.Animator.SetTrigger("Cloose");
-        });
+            for (int i = 0; i < StateMachine.Animator.Count; i++)
+            {
+                StateMachine.Animator[i]?.SetTrigger("Cloose");
 
-        // StateMachine.SwitchState(new PlayerOpenDoorState(StateMachine));
+            }
+        });
     }
 
     public override void Tick(float deltaTime)

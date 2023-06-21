@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 3840467940207301407}
   - component: {fileID: 3840467940207301395}
   - component: {fileID: 3840467940207301404}
-  - component: {fileID: 3840467940207301405}
-  - component: {fileID: 3840467940207301394}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -27,14 +25,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3840467940207301406}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3658801151184968597}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!54 &3840467940207301395
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -65,35 +64,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3840467940207301405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3840467940207301406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e596b178ffa2cd48b37b695a5dfde9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  duration: 10
---- !u!114 &3840467940207301394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3840467940207301406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 443f570c4db857542985e140d264b155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  network_id: 3236485591911138989
-  prefab_id: 3236485591911138989
-  is_scene: 0
 --- !u!1001 &3840467940261952638
 PrefabInstance:
   m_ObjectHideFlags: 0

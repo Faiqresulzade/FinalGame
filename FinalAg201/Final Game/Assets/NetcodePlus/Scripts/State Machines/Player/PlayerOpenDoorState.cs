@@ -10,7 +10,11 @@ public class PlayerOpenDoorState : PlayerBaseState
 
     public override void Enter()
     {
-        StateMachine.Animator.SetTrigger("Open");
+        for (int i = 0; i < StateMachine.Animator.Count; i++)
+        {
+            StateMachine.Animator[i].SetTrigger("Open");
+
+        }
         StateMachine.Detector.OnDetectGround += OnDetectGround;
     }
     private void OnDetectGround()
@@ -31,7 +35,12 @@ public class PlayerOpenDoorState : PlayerBaseState
         StateMachine.Detector.OnDetectGround -= OnDetectGround;
         StateMachine.Wait(3f, () =>
         {
-            StateMachine.Animator.SetTrigger("Cloose");
+            for (int i = 0; i < StateMachine.Animator.Count; i++)
+            {
+                StateMachine.Animator[i].SetTrigger("Cloose");
+
+            }
+           // StateMachine.Animator.SetTrigger("Cloose");
         });
 
     }
