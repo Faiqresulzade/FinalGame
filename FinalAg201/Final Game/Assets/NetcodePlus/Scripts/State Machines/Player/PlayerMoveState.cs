@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -13,7 +15,19 @@ public class PlayerMoveState : PlayerBaseState
 
     public override void Enter()
     {
+        StateMachine.Detector.OnDetectFloorSwitch += OnDetectFloorSwitch;
         //StateMachine.Detector.OnCoinDetect += OnCoinDetect;
+    }
+
+    private void OnDetectFloorSwitch(Collider other)
+    {
+        StateMachine.Animator.SetTrigger("Open");
+        StateMachine.Wait(3f, () =>
+        {
+            StateMachine.Animator.SetTrigger("Cloose");
+        });
+
+        // StateMachine.SwitchState(new PlayerOpenDoorState(StateMachine));
     }
 
     public override void Tick(float deltaTime)
@@ -32,8 +46,6 @@ public class PlayerMoveState : PlayerBaseState
           StateMachine.Physics.MovePosition(StateMachine.transform.position + (_direction.normalized * (StateMachine.speed * Time.deltaTime)));
         }
 
-        // StateMachine.transform.position += Vector3.forward * (3 * Time.deltaTime);
-
         if (Input.GetKeyDown(KeyCode.Space) && 
             Physics.Raycast(StateMachine.transform.position, Vector3.down, 1f, StateMachine.GroundLayer))
         {
@@ -43,6 +55,10 @@ public class PlayerMoveState : PlayerBaseState
 
     public override void Exit()
     {
-        //StateMachine.Detector.OnCoinDetect -= OnCoinDetect;
+        StateMachine.Detector.OnDetectFloorSwitch -= OnDetectFloorSwitch;
+    }
+    public override void MyOnTriggerEnter(Collider other)
+    {
+
     }
 }

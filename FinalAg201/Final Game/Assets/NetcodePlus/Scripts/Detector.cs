@@ -5,6 +5,7 @@ public class Detector : MonoBehaviour
 {
    // public event Action<Transform> OnCoinDetect;
     public event Action OnDetectGround;
+    public event Action<Collider> OnDetectFloorSwitch;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +13,12 @@ public class Detector : MonoBehaviour
         {
             Debug.Log("12345");
             OnDetectGround?.Invoke();
+        }
+
+        if (other.CompareTag("FloorSwitch"))
+        {
+            Debug.Log("12345");
+            OnDetectFloorSwitch?.Invoke(other);
         }
     }
 }

@@ -1,25 +1,26 @@
 using UnityEngine;
 
-public class PlayerJumpState : PlayerBaseState
+
+
+public class PlayerOpenDoorState : PlayerBaseState
 {
-    public PlayerJumpState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerOpenDoorState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
     public override void Enter()
     {
-        StateMachine.Physics.AddForce(Vector3.up * 10f, ForceMode.Impulse);
+        StateMachine.Animator.SetTrigger("Open");
         StateMachine.Detector.OnDetectGround += OnDetectGround;
     }
-
     private void OnDetectGround()
     {
         StateMachine.SwitchState(new PlayerMoveState(StateMachine));
     }
-        
+
     public override void Tick(float deltaTime)
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Physics.Raycast(StateMachine.transform.position, Vector3.down, 1f, StateMachine.GroundLayer))
         {
             StateMachine.SwitchState(new PlayerMoveState(StateMachine));
         }
@@ -28,10 +29,15 @@ public class PlayerJumpState : PlayerBaseState
     public override void Exit()
     {
         StateMachine.Detector.OnDetectGround -= OnDetectGround;
+        StateMachine.Wait(3f, () =>
+        {
+            StateMachine.Animator.SetTrigger("Cloose");
+        });
+
     }
 
     public override void MyOnTriggerEnter(Collider other)
     {
-
+        // throw new System.NotImplementedException();
     }
 }

@@ -15,4 +15,10 @@ public class StateMachine : MonoBehaviour
     {
         _currentState?.Tick(Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("hello");
+        _currentState?.MyOnTriggerEnter(other);
+    }
 }
