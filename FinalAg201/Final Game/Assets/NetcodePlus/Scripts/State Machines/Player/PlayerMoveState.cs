@@ -6,6 +6,7 @@ public class PlayerMoveState : PlayerBaseState
 
     private Vector3 _direction;
     private float _currentTurnAngle;
+    private bool isOpenDoor;
 
     public PlayerMoveState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -14,6 +15,24 @@ public class PlayerMoveState : PlayerBaseState
     public override void Enter()
     {
         StateMachine.Detector.OnDetectFloorSwitch += OnDetectFloorSwitch;
+        StateMachine.Detector.OnDetectOpenLever+=OnDetectOpenLever;
+    }
+
+
+    private void OnDetectOpenLever(Collider other, Animator animator, GameObject UIOpenLever,Animator Opendooranimator)
+    {
+        UIOpenLever.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.O)&&!isOpenDoor)
+        {
+            isOpenDoor=true;
+            animator.SetTrigger("OpenLever");
+            Opendooranimator.SetTrigger("DoorOpen");
+        }
+
+        StateMachine.Wait(5f, () =>
+        {
+            isOpenDoor = false;
+        });
     }
 
     private void OnDetectFloorSwitch(Collider other)

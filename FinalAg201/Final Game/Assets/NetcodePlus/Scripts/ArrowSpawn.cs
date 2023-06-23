@@ -6,7 +6,7 @@ public class ArrowSpawn : MonoBehaviour
 {
 
     [SerializeField] private GameObject spawnPrefab;
-    [SerializeField] public static Transform spawnPosition;
+    [SerializeField] public Transform spawnPosition;
 
     private List<GameObject> _activeArrow=new List<GameObject>();
     private List<GameObject> _passiveArrow=new List<GameObject>();
