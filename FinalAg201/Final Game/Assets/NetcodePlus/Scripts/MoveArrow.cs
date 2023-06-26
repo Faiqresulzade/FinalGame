@@ -11,7 +11,7 @@ public class MoveArrow : MonoBehaviour
 
     void Update()
     {
-        transform.position=new Vector3 ((transform.position.x- .1f* _speed), transform.position.y, transform.position.z);
+        transform.position+=Vector3.left*_speed*Time.deltaTime;
        // transform.position.x -= 10 * _speed;
     }
 }

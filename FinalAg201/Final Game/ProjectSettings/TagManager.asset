@@ -10,6 +10,9 @@ TagManager:
   - FloorTrap
   - Room3Door
   - Yellow
+  - Red
+  - Green
+  - Blue
   layers:
   - Default
   - TransparentFX

@@ -27,10 +27,9 @@ public class ArrowSpawn : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             GameObject ArrowObject = Instantiate(spawnPrefab,
-            new Vector3(spawnPosition.position.x, spawnPosition.position.y, spawnPosition.position.z),
-            Quaternion.identity);
+            spawnPosition);
 
-            // ArrowObject.transform.rotation=Quaternion.EulerRotation(euler:new Vector3(1,1,1));
+            ArrowObject.SetActive(false);
             _passiveArrow.Add(ArrowObject);
         }
     }
@@ -53,8 +52,8 @@ public class ArrowSpawn : MonoBehaviour
             for (int i = 0; i < _passiveArrow.Count; i++)
             {
                 yield return new WaitForSeconds(5f);
+                _passiveArrow[i].transform.position= spawnPosition.position;
                 _passiveArrow[i].SetActive(true);
-                _passiveArrow[i].transform.position = new Vector3(15, -5f);
                 _passiveArrow[i].AddComponent<MoveArrow>();
                 _activeArrow.Add(_passiveArrow[i]);
                 _passiveArrow.Remove(_passiveArrow[i]);
