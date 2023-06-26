@@ -4,10 +4,6 @@ public class Room3OpenRightDoor : MonoBehaviour
 {
     [SerializeField] private Animator OpenDoorAnimator;
 
-    void Start()
-    {
-    }
-
     void Update()
     {
         OpeenDoor();
@@ -20,6 +16,7 @@ public class Room3OpenRightDoor : MonoBehaviour
         {
             OpenDoorAnimator.SetTrigger("OpenDoor");
             Debug.Log("opendoor");
+            gameObject.SetActive(false);
         }
     }
 }

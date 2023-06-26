@@ -51,12 +51,12 @@ public class ArrowSpawn : MonoBehaviour
 
             for (int i = 0; i < _passiveArrow.Count; i++)
             {
-                yield return new WaitForSeconds(5f);
                 _passiveArrow[i].transform.position= spawnPosition.position;
                 _passiveArrow[i].SetActive(true);
                 _passiveArrow[i].AddComponent<MoveArrow>();
                 _activeArrow.Add(_passiveArrow[i]);
                 _passiveArrow.Remove(_passiveArrow[i]);
+                yield return new WaitForSeconds(5f);
             }
 
         }

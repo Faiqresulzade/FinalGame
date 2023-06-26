@@ -2,8 +2,18 @@ using UnityEngine;
 
 public class GreenCube : MonoBehaviour
 {
-    private static readonly GreenCube _instance = new GreenCube();
-    public static GreenCube Instance { get { return _instance; } }
+    private static GreenCube _instance;
+    public static GreenCube Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindAnyObjectByType<GreenCube>();
+            }
+            return _instance;
+        }
+    }
 
     public bool isTrigger;
     private void OnTriggerEnter(Collider other)

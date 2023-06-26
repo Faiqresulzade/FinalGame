@@ -23,6 +23,7 @@ public class Detector : MonoBehaviour
         if (other.CompareTag("FloorSwitch"))
         {
             OnDetectFloorSwitch?.Invoke(other);
+            Debug.Log(12);
         }
 
         if (other.CompareTag("Room3Door"))
@@ -33,6 +34,11 @@ public class Detector : MonoBehaviour
         if (other.CompareTag("FloorTrap"))
         {
            // OnDetectFloorTrap?.Invoke(other);
+            SceneManager.LoadScene(0);
+        }
+
+        if (other.CompareTag("Arrow"))
+        {
             SceneManager.LoadScene(0);
         }
     }

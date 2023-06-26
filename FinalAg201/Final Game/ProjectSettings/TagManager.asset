@@ -13,6 +13,7 @@ TagManager:
   - Red
   - Green
   - Blue
+  - Arrow
   layers:
   - Default
   - TransparentFX

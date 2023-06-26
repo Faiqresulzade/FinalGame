@@ -2,8 +2,18 @@ using UnityEngine;
 
 public class YellowCube : MonoBehaviour
 {
-    private static readonly YellowCube _instance = new YellowCube();
-    public static YellowCube Instance { get { return _instance; } }
+    private static YellowCube _instance;
+    public static YellowCube Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindAnyObjectByType<YellowCube>();
+            }
+            return _instance;
+        }
+    }
 
     public bool isTrigger;
     private void OnTriggerEnter(Collider other)

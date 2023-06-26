@@ -3,7 +3,7 @@ using UnityEngine;
 public class MoveArrow : MonoBehaviour
 {
 
-    private float _speed=1;
+    private float _speed=5;
     void Start()
     {
         
@@ -12,6 +12,5 @@ public class MoveArrow : MonoBehaviour
     void Update()
     {
         transform.position+=Vector3.left*_speed*Time.deltaTime;
-       // transform.position.x -= 10 * _speed;
     }
 }
