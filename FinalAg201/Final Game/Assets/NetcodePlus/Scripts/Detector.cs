@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Detector : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Detector : MonoBehaviour
 
     public event Action OnDetectGround;
     public event Action<Collider> OnDetectFloorSwitch;
+    public event Action<Collider> OnDetectPuzzleCube;
     public event Action<Collider, Animator, GameObject,Animator> OnDetectOpenLever;
 
     private void OnTriggerEnter(Collider other)
@@ -21,6 +23,17 @@ public class Detector : MonoBehaviour
         if (other.CompareTag("FloorSwitch"))
         {
             OnDetectFloorSwitch?.Invoke(other);
+        }
+
+        if (other.CompareTag("Room3Door"))
+        {
+            OnDetectPuzzleCube.Invoke(other);
+        }
+
+        if (other.CompareTag("FloorTrap"))
+        {
+           // OnDetectFloorTrap?.Invoke(other);
+            SceneManager.LoadScene(0);
         }
     }
 

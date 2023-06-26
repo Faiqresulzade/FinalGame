@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -15,16 +16,50 @@ public class PlayerMoveState : PlayerBaseState
     public override void Enter()
     {
         StateMachine.Detector.OnDetectFloorSwitch += OnDetectFloorSwitch;
-        StateMachine.Detector.OnDetectOpenLever+=OnDetectOpenLever;
+        StateMachine.Detector.OnDetectOpenLever += OnDetectOpenLever;
+        StateMachine.Detector.OnDetectPuzzleCube += OnDetectPuzzleCube;
+    }
+
+    public override void Exit()
+    {
+        StateMachine.Detector.OnDetectFloorSwitch -= OnDetectFloorSwitch;
+        StateMachine.Detector.OnDetectOpenLever -= OnDetectOpenLever;
+        StateMachine.Detector.OnDetectPuzzleCube -= OnDetectPuzzleCube;
+
     }
 
 
-    private void OnDetectOpenLever(Collider other, Animator animator, GameObject UIOpenLever,Animator Opendooranimator)
+    public override void Tick(float deltaTime)
+    {
+
+        _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        if (_direction.magnitude > 0.01f)
+        {
+            float targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(StateMachine.transform.eulerAngles.y, targetAngle, ref _currentTurnAngle,
+                0.3f);
+
+            StateMachine.transform.rotation = Quaternion.Euler(0, angle, 0);
+
+            StateMachine.Physics.MovePosition(StateMachine.transform.position + (_direction.normalized * (StateMachine.speed * Time.deltaTime)));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) &&
+            Physics.Raycast(StateMachine.transform.position, Vector3.down, 1f, StateMachine.GroundLayer))
+        {
+            StateMachine.SwitchState(new PlayerJumpState(StateMachine));
+        }
+    }
+
+
+
+    private void OnDetectOpenLever(Collider other, Animator animator, GameObject UIOpenLever, Animator Opendooranimator)
     {
         UIOpenLever.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.O)&&!isOpenDoor)
+        if (Input.GetKeyDown(KeyCode.O) && !isOpenDoor)
         {
-            isOpenDoor=true;
+            isOpenDoor = true;
             animator.SetTrigger("OpenLever");
             Opendooranimator.SetTrigger("DoorOpen");
         }
@@ -33,6 +68,11 @@ public class PlayerMoveState : PlayerBaseState
         {
             isOpenDoor = false;
         });
+    }
+
+    private void OnDetectPuzzleCube(Collider other)
+    {
+        StateMachine.SwitchState(new PuzzleCubeState(StateMachine));
     }
 
     private void OnDetectFloorSwitch(Collider other)
@@ -53,33 +93,6 @@ public class PlayerMoveState : PlayerBaseState
         });
     }
 
-    public override void Tick(float deltaTime)
-    {
-
-        _direction = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")); 
-
-        if (_direction.magnitude > 0.01f)
-        {
-            float targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(StateMachine.transform.eulerAngles.y, targetAngle, ref _currentTurnAngle,
-                0.3f);
-
-            StateMachine.transform.rotation = Quaternion.Euler(0, angle, 0);
-
-          StateMachine.Physics.MovePosition(StateMachine.transform.position + (_direction.normalized * (StateMachine.speed * Time.deltaTime)));
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && 
-            Physics.Raycast(StateMachine.transform.position, Vector3.down, 1f, StateMachine.GroundLayer))
-        {
-            StateMachine.SwitchState(new PlayerJumpState(StateMachine));
-        }
-    }
-
-    public override void Exit()
-    {
-        StateMachine.Detector.OnDetectFloorSwitch -= OnDetectFloorSwitch;
-    }
     public override void MyOnTriggerEnter(Collider other)
     {
 
