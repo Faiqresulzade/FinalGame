@@ -18,6 +18,7 @@ public class PlayerMoveState : PlayerBaseState
         StateMachine.Detector.OnDetectFloorSwitch += OnDetectFloorSwitch;
         StateMachine.Detector.OnDetectOpenLever += OnDetectOpenLever;
         StateMachine.Detector.OnDetectPuzzleCube += OnDetectPuzzleCube;
+        StateMachine.Detector.OnDetectKey += OnDetectKey;
     }
 
     public override void Exit()
@@ -25,6 +26,7 @@ public class PlayerMoveState : PlayerBaseState
         StateMachine.Detector.OnDetectFloorSwitch -= OnDetectFloorSwitch;
         StateMachine.Detector.OnDetectOpenLever -= OnDetectOpenLever;
         StateMachine.Detector.OnDetectPuzzleCube -= OnDetectPuzzleCube;
+        StateMachine.Detector.OnDetectKey -= OnDetectKey;
 
     }
 
@@ -91,6 +93,12 @@ public class PlayerMoveState : PlayerBaseState
 
             }
         });
+    }
+
+    private void OnDetectKey(Collider other,GameObject UIKeySetActive)
+    {
+        other.gameObject.SetActive(false);
+        UIKeySetActive.gameObject.SetActive(true);
     }
 
     public override void MyOnTriggerEnter(Collider other)

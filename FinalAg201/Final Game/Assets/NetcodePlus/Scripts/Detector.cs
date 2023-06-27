@@ -7,10 +7,12 @@ public class Detector : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Animator Opendooranimator;
     [SerializeField] private GameObject UIOpenLever;
+    [SerializeField] private GameObject UIKeySetActive;
 
     public event Action OnDetectGround;
     public event Action<Collider> OnDetectFloorSwitch;
     public event Action<Collider> OnDetectPuzzleCube;
+    public event Action<Collider,GameObject> OnDetectKey;
     public event Action<Collider, Animator, GameObject,Animator> OnDetectOpenLever;
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +31,11 @@ public class Detector : MonoBehaviour
         if (other.CompareTag("Room3Door"))
         {
             OnDetectPuzzleCube.Invoke(other);
+        }
+
+        if (other.CompareTag("Key"))
+        {
+            OnDetectKey.Invoke(other, UIKeySetActive);
         }
 
         if (other.CompareTag("FloorTrap"))
