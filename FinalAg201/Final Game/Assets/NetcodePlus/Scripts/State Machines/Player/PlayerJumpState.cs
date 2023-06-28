@@ -8,7 +8,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Enter()
     {
-        StateMachine.Physics.AddForce(Vector3.up * 10f, ForceMode.Impulse);
+        StateMachine.Physics.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
         StateMachine.Detector.OnDetectGround += OnDetectGround;
     }
 

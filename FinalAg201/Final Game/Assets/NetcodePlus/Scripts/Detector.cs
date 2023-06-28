@@ -15,8 +15,8 @@ public class Detector : MonoBehaviour
     public event Action<Collider> OnDetectFloorSwitch;
     public event Action<Collider> OnDetectPuzzleCube;
     public event Action<Collider,GameObject> OnDetectKey;
-    public event Action<Animator,GameObject> OnDetectRoom3OpenDoor;
-    public event Action<Collider, Animator, GameObject,Animator> OnDetectOpenLever;
+    public event Action<Animator,GameObject,GameObject> OnDetectRoom3OpenDoor;
+    public event Action<Collider, Animator, GameObject, Animator> OnDetectOpenLever;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +28,6 @@ public class Detector : MonoBehaviour
         if (other.CompareTag("FloorSwitch"))
         {
             OnDetectFloorSwitch?.Invoke(other);
-            Debug.Log(12);
         }
 
         if (other.CompareTag("Room3Door"))
@@ -43,7 +42,6 @@ public class Detector : MonoBehaviour
 
         if (other.CompareTag("FloorTrap"))
         {
-           // OnDetectFloorTrap?.Invoke(other);
             SceneManager.LoadScene(0);
         }
 
@@ -63,8 +61,7 @@ public class Detector : MonoBehaviour
 
         if (other.CompareTag("Room3Door"))
         {
-            Debug.Log(123456);
-            OnDetectRoom3OpenDoor?.Invoke(Room3Opendooranimator, UIKeySetActive);
+            OnDetectRoom3OpenDoor?.Invoke(Room3Opendooranimator, UIKeySetActive, UIPressOSetActive);
         }
     }
 

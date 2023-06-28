@@ -104,12 +104,15 @@ public class PlayerMoveState : PlayerBaseState
         UIKeySetActive.gameObject.SetActive(true);
     }
 
-    private void OnDetectRoom3OpendDoor(Animator animator, GameObject ui)
+    private void OnDetectRoom3OpendDoor(Animator animator, GameObject UIKeySetActive, GameObject UIPressOSetActive)
     {
+        UIPressOSetActive.gameObject.SetActive(true);
+        Debug.Log("qwert");
         if (Input.GetKeyDown(KeyCode.O))
         {
+            Debug.Log("qwerty");
             animator.SetTrigger("Open");
-            ui.SetActive(false);
+            UIKeySetActive.SetActive(false);
         }
     }
 
