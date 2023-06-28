@@ -12,14 +12,10 @@ public class ArrowSpawn : MonoBehaviour
     private List<GameObject> _passiveArrow=new List<GameObject>();
     private bool _isSpawning=true;
 
-
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.transform.CompareTag("Player"))
-        {
-            InstantiateArrow();
-            StartCoroutine(nameof(Spawn));
-        }
+        InstantiateArrow();
+        StartCoroutine(nameof(Spawn));
     }
 
     public void InstantiateArrow()
@@ -56,7 +52,7 @@ public class ArrowSpawn : MonoBehaviour
                 _passiveArrow[i].AddComponent<MoveArrow>();
                 _activeArrow.Add(_passiveArrow[i]);
                 _passiveArrow.Remove(_passiveArrow[i]);
-                yield return new WaitForSeconds(5f);
+                yield return new WaitForSeconds(2.5f);
             }
 
         }
