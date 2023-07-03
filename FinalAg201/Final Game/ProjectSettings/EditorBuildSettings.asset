@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/NetcodePlus/Demo/Scenes/MyLoby.unity
+    guid: d148470f5ade2074eb95228e37b84bc2
+  - enabled: 1
+    path: Assets/NetcodePlus/Demo/Scenes/DemoPuzzle.unity
+    guid: 11374a145c7740c478fec77ec17d7679
   m_configObjects: {}

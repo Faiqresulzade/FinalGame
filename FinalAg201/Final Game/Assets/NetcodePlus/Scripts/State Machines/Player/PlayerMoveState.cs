@@ -106,6 +106,7 @@ public class PlayerMoveState : PlayerBaseState
 
     private void OnDetectRoom3OpendDoor(Animator animator, GameObject UIKeySetActive, GameObject UIPressOSetActive)
     {
+        Debug.Log("qwertkolui");
         UIPressOSetActive.gameObject.SetActive(true);
         Debug.Log("qwert");
         if (Input.GetKeyDown(KeyCode.O))

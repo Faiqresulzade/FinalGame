@@ -49,7 +49,7 @@ public class Detector : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
-
+       
     }
 
     private void OnTriggerStay(Collider other)
@@ -58,11 +58,12 @@ public class Detector : MonoBehaviour
         {
             OnDetectOpenLever?.Invoke(other, animator, UIOpenLever, Opendooranimator);
         }
-
         if (other.CompareTag("Room3Door"))
         {
-            OnDetectRoom3OpenDoor?.Invoke(Room3Opendooranimator, UIKeySetActive, UIPressOSetActive);
+            Debug.Log(12);
+            OnDetectRoom3OpenDoor.Invoke(Room3Opendooranimator, UIKeySetActive, UIPressOSetActive);
         }
+
     }
 
     private void OnTriggerExit(Collider other)
