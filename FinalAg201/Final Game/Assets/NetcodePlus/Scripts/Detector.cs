@@ -6,6 +6,7 @@ public class Detector : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Animator Opendooranimator;
+    [SerializeField] private Animator Room3OpendoorWithKeyAnimator;
     [SerializeField] private Animator Room3Opendooranimator;
     [SerializeField] private GameObject UIOpenLever;
     [SerializeField] private GameObject UIKeySetActive;
@@ -60,14 +61,16 @@ public class Detector : MonoBehaviour
         }
         if (other.CompareTag("Room3DoorwithKey"))
         {
+            UIPressOSetActive.SetActive(true);
+
             if (Input.GetKeyDown(KeyCode.O))
             {
-                Debug.Log("qwerty");
-                animator.SetTrigger("Open");
+                Debug.Log(1);
+                Room3OpendoorWithKeyAnimator.SetTrigger("Open");
                 UIKeySetActive.SetActive(false);
+                Debug.Log(1);
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -77,7 +80,7 @@ public class Detector : MonoBehaviour
             UIOpenLever.SetActive(false);
         }
 
-        if (other.CompareTag("Room3Door"))
+        if (other.CompareTag("Room3DoorwithKey"))
         {
             Debug.Log(12340987654356);
             UIPressOSetActive.gameObject.SetActive(false);
