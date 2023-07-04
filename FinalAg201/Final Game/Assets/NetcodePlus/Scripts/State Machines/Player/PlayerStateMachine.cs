@@ -7,8 +7,9 @@ public class PlayerStateMachine : StateMachine
 {
     [field: SerializeField] public LayerMask GroundLayer { get; set; }
     [field: SerializeField] public List<Animator> Animator { get; private set; }
-   // [field: SerializeField] public Animator AnimatorRoom1 { get; private set; }
+
     [SerializeField] public float speed;
+    [SerializeField] public Animator MoveAnim;
 
     public Rigidbody Physics { get; private set; }
     public Detector Detector { get; private set; }

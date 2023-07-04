@@ -45,6 +45,12 @@ public class PlayerMoveState : PlayerBaseState
 
             StateMachine.Physics.MovePosition(StateMachine.transform.position +
             (_direction.normalized * (StateMachine.speed * Time.deltaTime)));
+
+            StateMachine.MoveAnim.SetBool("Run", true);
+        }
+        else
+        {
+            StateMachine.MoveAnim.SetBool("Run", false);
         }
 
 
@@ -106,15 +112,15 @@ public class PlayerMoveState : PlayerBaseState
 
     private void OnDetectRoom3OpendDoor(Animator animator, GameObject UIKeySetActive, GameObject UIPressOSetActive)
     {
-        Debug.Log("qwertkolui");
-        UIPressOSetActive.gameObject.SetActive(true);
-        Debug.Log("qwert");
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Debug.Log("qwerty");
-            animator.SetTrigger("Open");
-            UIKeySetActive.SetActive(false);
-        }
+        //Debug.Log("qwertkolui");
+        //UIPressOSetActive.gameObject.SetActive(true);
+        //Debug.Log("qwert");
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    Debug.Log("qwerty");
+        //    animator.SetTrigger("Open");
+        //    UIKeySetActive.SetActive(false);
+        //}
     }
 
     public override void MyOnTriggerEnter(Collider other)

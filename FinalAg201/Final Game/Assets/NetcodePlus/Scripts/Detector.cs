@@ -58,10 +58,14 @@ public class Detector : MonoBehaviour
         {
             OnDetectOpenLever?.Invoke(other, animator, UIOpenLever, Opendooranimator);
         }
-        if (other.CompareTag("Room3Door"))
+        if (other.CompareTag("Room3DoorwithKey"))
         {
-            Debug.Log(12);
-            OnDetectRoom3OpenDoor.Invoke(Room3Opendooranimator, UIKeySetActive, UIPressOSetActive);
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                Debug.Log("qwerty");
+                animator.SetTrigger("Open");
+                UIKeySetActive.SetActive(false);
+            }
         }
 
     }

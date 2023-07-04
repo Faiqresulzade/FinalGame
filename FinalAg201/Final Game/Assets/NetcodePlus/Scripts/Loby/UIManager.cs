@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -5,8 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour
+public partial class UIManager : MonoBehaviour
 {
+
+    //For Loby
+
     [SerializeField] private GameObject SettingsPanel;
     [SerializeField] private GameObject LobyPanel;
     [SerializeField] private GameObject Players;
@@ -17,10 +21,36 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite MediumVolumeSprite;
     [SerializeField] private Sprite MaxVolumeSprite;
     [SerializeField] private TMP_Dropdown DropdownChangeCharacter;
+    [SerializeField] private GameObject Player;
 
+    private static UIManager _instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<UIManager>();
+            }
+
+            return _instance;
+        }
+    }
+    public static int SelectedPlayer { get; set; }
 
     private void Awake()
     {
+        if(_instance != null)
+        {
+            Destroy(gameObject);
+        }
+
+        DropdownChangeCharacter.onValueChanged.AddListener(index =>
+        {
+            SelectedPlayer = index;
+        });
+
+        DontDestroyOnLoad(gameObject);
         Slider.value = 1f;
     }
 
@@ -61,6 +91,8 @@ public class UIManager : MonoBehaviour
 
     public void OnClickPlayBTN()
     {
+
+
         SceneManager.LoadScene(1);
     }
 
@@ -77,26 +109,33 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void ChangeCharacter()
+
+}
+
+public partial class UIManager : MonoBehaviour
+{
+    //For PlayScene
+
+    [SerializeField] private GameObject PausePanel;
+    [SerializeField] private GameObject PausePanelBTN;
+
+    public void OnClickLobyBTN()
     {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
 
-        if (DropdownChangeCharacter.value == 1)
-        {
-           Scene scene= SceneManager.GetSceneAt(1);
-           GameObject[] players=scene.GetRootGameObjects();
+    public void OnClickPauseBTN()
+    {
+        PausePanel.gameObject.SetActive(true);
+        PausePanelBTN.gameObject.SetActive(false);
+        Time.timeScale = 0;
+    }
 
-            for (int i = 0; i < players.Length; i++)
-            {
-               string name= players[i].name;
-                if (name == "Players")
-                {
-                    players[i].transform.GetChild(3).gameObject.SetActive(true);
-                }
-            }
-
-
-            //GameObject players = GameObject.Find("ExplorerRed");
-            //players.gameObject.SetActive(true);
-        }
+    public void OnClickContinueBTN()
+    {
+        PausePanel.gameObject.SetActive(false);
+        PausePanelBTN.gameObject.SetActive(true);
+        Time.timeScale = 1;
     }
 }

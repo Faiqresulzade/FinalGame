@@ -15,6 +15,7 @@ TagManager:
   - Blue
   - Arrow
   - Key
+  - Room3DoorwithKey
   layers:
   - Default
   - TransparentFX
