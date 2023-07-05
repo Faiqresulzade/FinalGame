@@ -786,6 +786,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4276212085648285078, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276212085798273069, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276212085823295640, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276212085823295645, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276212086089934716, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4464207302231707889, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

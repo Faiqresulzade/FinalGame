@@ -11,6 +11,9 @@ public class Detector : MonoBehaviour
     [SerializeField] private GameObject UIOpenLever;
     [SerializeField] private GameObject UIKeySetActive;
     [SerializeField] private GameObject UIPressOSetActive;
+    [SerializeField] private GameObject Key;
+
+    private int _count;
 
     public event Action OnDetectGround;
     public event Action<Collider> OnDetectFloorSwitch;
@@ -38,7 +41,9 @@ public class Detector : MonoBehaviour
 
         if (other.CompareTag("Key"))
         {
-            OnDetectKey?.Invoke(other, UIKeySetActive);
+            _count++;
+            OnDetectKey?.Invoke(other, Key);
+           // Key.gameObject.SetActive(true);
         }
 
         if (other.CompareTag("FloorTrap"))
@@ -61,15 +66,17 @@ public class Detector : MonoBehaviour
         }
         if (other.CompareTag("Room3DoorwithKey"))
         {
-            UIPressOSetActive.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.O))
+            if (_count != 0)
             {
-                Debug.Log(1);
-                Room3OpendoorWithKeyAnimator.SetTrigger("Open");
-                UIKeySetActive.SetActive(false);
-                Debug.Log(1);
+                UIPressOSetActive.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    Room3OpendoorWithKeyAnimator.SetBool("IsOpen", true);
+                    Key.SetActive(false);
+                }
             }
+           
         }
     }
 
