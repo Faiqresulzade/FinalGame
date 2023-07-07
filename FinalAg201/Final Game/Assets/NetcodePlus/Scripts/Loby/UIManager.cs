@@ -17,11 +17,13 @@ public partial class UIManager : MonoBehaviour
     [SerializeField] private AudioSource BackroundMusic;
     [SerializeField] private Slider Slider;
     [SerializeField] private Image VolumeImage;
+    [SerializeField] private Image VolumeImageInGame;
     [SerializeField] private Sprite MuteVolumeSprite;
     [SerializeField] private Sprite MediumVolumeSprite;
     [SerializeField] private Sprite MaxVolumeSprite;
     [SerializeField] private TMP_Dropdown DropdownChangeCharacter;
     [SerializeField] private GameObject Player;
+    [SerializeField] private Slider VolumeSliderInGame;
 
     private static UIManager _instance;
     public static UIManager Instance
@@ -40,7 +42,7 @@ public partial class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance != null)
+        if (_instance != null)
         {
             Destroy(gameObject);
         }
@@ -137,5 +139,23 @@ public partial class UIManager : MonoBehaviour
         PausePanel.gameObject.SetActive(false);
         PausePanelBTN.gameObject.SetActive(true);
         Time.timeScale = 1;
+    }
+
+    public void ChangeVolumeInGame()
+    {
+        BackroundMusic.volume = VolumeSliderInGame.value;
+
+        if (BackroundMusic.volume == 0)
+        {
+            VolumeImageInGame.sprite = MuteVolumeSprite;
+        }
+        else if (BackroundMusic.volume > 0 && BackroundMusic.volume < 0.6)
+        {
+            VolumeImageInGame.sprite = MediumVolumeSprite;
+        }
+        else
+        {
+            VolumeImageInGame.sprite = MaxVolumeSprite;
+        }
     }
 }

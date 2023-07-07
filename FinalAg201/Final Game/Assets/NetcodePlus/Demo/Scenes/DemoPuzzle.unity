@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204563095}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
   m_Name: 
@@ -1398,7 +1398,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204563095}
-  m_LocalRotation: {x: 0.26637524, y: -0.000000016584703, z: 0.000000004583353, w: 0.96386945}
+  m_LocalRotation: {x: 0.26637524, y: 0.000000016584707, z: -0.000000004583354, w: 0.96386945}
   m_LocalPosition: {x: 0, y: 7.069129, z: -8.986915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7195,7 +7195,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.26637524, y: -0.000000016584703, z: 0.000000004583353, w: 0.96386945}
+  m_LocalRotation: {x: 0.26637524, y: 0.000000016584707, z: -0.000000004583354, w: 0.96386945}
   m_LocalPosition: {x: 0, y: 7.069129, z: -8.986915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19837,11 +19837,13 @@ MonoBehaviour:
   BackroundMusic: {fileID: 0}
   Slider: {fileID: 4498838329048562017}
   VolumeImage: {fileID: 4498838329030627139}
+  VolumeImageInGame: {fileID: 0}
   MuteVolumeSprite: {fileID: 21300000, guid: 7572272d9fc4a7b429cecafbea1d71bb, type: 3}
   MediumVolumeSprite: {fileID: 21300000, guid: 38a6ea410883bf944b554bdb28f756ee, type: 3}
   MaxVolumeSprite: {fileID: 21300000, guid: e83bdef058613d14dbbd3ab24d659776, type: 3}
   DropdownChangeCharacter: {fileID: 0}
   Player: {fileID: 0}
+  VolumeSliderInGame: {fileID: 0}
   PausePanel: {fileID: 4498838329313456744}
   PausePanelBTN: {fileID: 4498838328629830880}
 --- !u!1 &4498838328689506991
