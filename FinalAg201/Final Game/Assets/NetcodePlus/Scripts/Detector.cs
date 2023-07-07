@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,11 +9,13 @@ public class Detector : MonoBehaviour
     [SerializeField] private Animator Opendooranimator;
     [SerializeField] private Animator Room3OpendoorWithKeyAnimator;
     [SerializeField] private Animator Room3Opendooranimator;
+    [SerializeField] private Animator Room5Opendooranimator;
     [SerializeField] private GameObject UIOpenLever;
     [SerializeField] private GameObject UIKeySetActive;
     [SerializeField] private GameObject UIPressOSetActive;
     [SerializeField] private GameObject Key;
     [SerializeField] private GameObject WinPanel;
+    [SerializeField] public Animator DeathAnim;
 
     private int _count;
 
@@ -23,6 +26,7 @@ public class Detector : MonoBehaviour
     public event Action<Animator,GameObject,GameObject> OnDetectRoom3OpenDoor;
     public event Action<Collider, Animator, GameObject, Animator> OnDetectOpenLever;
     public event Action<GameObject> OnDetectFinishCollider;
+    public event Action<Animator> OnDetectFinishFloorSwitch;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,6 +39,10 @@ public class Detector : MonoBehaviour
         {
             OnDetectFloorSwitch?.Invoke(other);
         }
+        if (other.CompareTag("FloorSwitchFinish"))
+        {
+            OnDetectFinishFloorSwitch?.Invoke(Room5Opendooranimator);
+        }
 
         if (other.CompareTag("Room3Door"))
         {
@@ -45,17 +53,20 @@ public class Detector : MonoBehaviour
         {
             _count++;
             OnDetectKey?.Invoke(other, Key);
-           // Key.gameObject.SetActive(true);
         }
 
         if (other.CompareTag("FloorTrap"))
         {
-            SceneManager.LoadScene(0);
+            DeathAnim.SetBool("Death", true);
+            StartCoroutine(Wait());
+           
         }
 
         if (other.CompareTag("Arrow"))
         {
-            SceneManager.LoadScene(0);
+            DeathAnim.SetBool("Death", true);
+            StartCoroutine(Wait());
+           // SceneManager.LoadScene(0);
         }
 
         if (other.CompareTag("FinishEmptyCollider"))
@@ -100,5 +111,11 @@ public class Detector : MonoBehaviour
             Debug.Log(12340987654356);
             UIPressOSetActive.gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(0);
     }
 }

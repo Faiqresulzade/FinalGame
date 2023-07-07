@@ -18,6 +18,7 @@ public class PlayerMoveState : PlayerBaseState
         StateMachine.Detector.OnDetectKey += OnDetectKey;
         StateMachine.Detector.OnDetectRoom3OpenDoor += OnDetectRoom3OpendDoor;
         StateMachine.Detector.OnDetectFinishCollider += OnDetectFinishCollider;
+        StateMachine.Detector.OnDetectFinishFloorSwitch += OnDetectRoom5OpenDoor;
     }
 
     public override void Exit()
@@ -28,6 +29,7 @@ public class PlayerMoveState : PlayerBaseState
         StateMachine.Detector.OnDetectKey -= OnDetectKey;
         StateMachine.Detector.OnDetectRoom3OpenDoor -= OnDetectRoom3OpendDoor;
         StateMachine.Detector.OnDetectFinishCollider -= OnDetectFinishCollider;
+        StateMachine.Detector.OnDetectFinishFloorSwitch -= OnDetectRoom5OpenDoor;
     }
 
 
@@ -63,7 +65,10 @@ public class PlayerMoveState : PlayerBaseState
         }
     }
 
-
+    private void OnDetectRoom5OpenDoor(Animator animator)
+    {
+        animator.SetTrigger("Open");
+    }
 
     private void OnDetectOpenLever(Collider other, Animator animator, GameObject UIOpenLever, Animator Opendooranimator)
     {

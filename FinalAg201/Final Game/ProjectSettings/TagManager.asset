@@ -17,6 +17,8 @@ TagManager:
   - Key
   - Room3DoorwithKey
   - FinishEmptyCollider
+  - Missile
+  - FloorSwitchFinish
   layers:
   - Default
   - TransparentFX
