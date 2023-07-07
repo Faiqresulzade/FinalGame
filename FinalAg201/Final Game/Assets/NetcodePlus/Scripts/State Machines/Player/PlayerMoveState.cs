@@ -17,6 +17,7 @@ public class PlayerMoveState : PlayerBaseState
         StateMachine.Detector.OnDetectPuzzleCube += OnDetectPuzzleCube;
         StateMachine.Detector.OnDetectKey += OnDetectKey;
         StateMachine.Detector.OnDetectRoom3OpenDoor += OnDetectRoom3OpendDoor;
+        StateMachine.Detector.OnDetectFinishCollider += OnDetectFinishCollider;
     }
 
     public override void Exit()
@@ -26,6 +27,7 @@ public class PlayerMoveState : PlayerBaseState
         StateMachine.Detector.OnDetectPuzzleCube -= OnDetectPuzzleCube;
         StateMachine.Detector.OnDetectKey -= OnDetectKey;
         StateMachine.Detector.OnDetectRoom3OpenDoor -= OnDetectRoom3OpendDoor;
+        StateMachine.Detector.OnDetectFinishCollider -= OnDetectFinishCollider;
     }
 
 
@@ -121,6 +123,12 @@ public class PlayerMoveState : PlayerBaseState
         //    animator.SetTrigger("Open");
         //    UIKeySetActive.SetActive(false);
         //}
+    }
+
+    private void OnDetectFinishCollider(GameObject WinPanel)
+    {
+        Time.timeScale = 0;
+        WinPanel.SetActive(true);
     }
 
     public override void MyOnTriggerEnter(Collider other)

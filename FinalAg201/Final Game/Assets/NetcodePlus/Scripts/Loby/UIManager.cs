@@ -93,8 +93,6 @@ public partial class UIManager : MonoBehaviour
 
     public void OnClickPlayBTN()
     {
-
-
         SceneManager.LoadScene(1);
     }
 

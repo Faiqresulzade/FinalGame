@@ -12,6 +12,7 @@ public class Detector : MonoBehaviour
     [SerializeField] private GameObject UIKeySetActive;
     [SerializeField] private GameObject UIPressOSetActive;
     [SerializeField] private GameObject Key;
+    [SerializeField] private GameObject WinPanel;
 
     private int _count;
 
@@ -21,6 +22,7 @@ public class Detector : MonoBehaviour
     public event Action<Collider,GameObject> OnDetectKey;
     public event Action<Animator,GameObject,GameObject> OnDetectRoom3OpenDoor;
     public event Action<Collider, Animator, GameObject, Animator> OnDetectOpenLever;
+    public event Action<GameObject> OnDetectFinishCollider;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -54,6 +56,12 @@ public class Detector : MonoBehaviour
         if (other.CompareTag("Arrow"))
         {
             SceneManager.LoadScene(0);
+        }
+
+        if (other.CompareTag("FinishEmptyCollider"))
+        {
+            Debug.Log("Finish");
+            OnDetectFinishCollider?.Invoke(WinPanel);
         }
        
     }

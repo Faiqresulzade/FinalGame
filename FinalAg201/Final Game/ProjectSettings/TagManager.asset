@@ -16,6 +16,7 @@ TagManager:
   - Arrow
   - Key
   - Room3DoorwithKey
+  - FinishEmptyCollider
   layers:
   - Default
   - TransparentFX

@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManagerinGame : MonoBehaviour
 {
-    void Start()
+    public void OnClickPlayBTN()
     {
-        
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
-    void Update()
+    public void OnClickQuitBTN()
     {
-        
+
     }
 }
