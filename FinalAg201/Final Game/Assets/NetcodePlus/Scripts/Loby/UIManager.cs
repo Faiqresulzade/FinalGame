@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,7 +34,7 @@ public partial class UIManager : MonoBehaviour
             return _instance;
         }
     }
-    public static int SelectedPlayer { get; set; }
+    public static int SelectedPlayer { get; set; } = 1;
 
     private void Awake()
     {

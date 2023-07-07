@@ -10,6 +10,7 @@ public class PlayerStateMachine : StateMachine
 
     [SerializeField] public float speed;
     [SerializeField] public Animator MoveAnim;
+    [SerializeField] public Animator JumpAnim;
 
     public Rigidbody Physics { get; private set; }
     public Detector Detector { get; private set; }

@@ -61,6 +61,7 @@ public class PlayerMoveState : PlayerBaseState
         if (Input.GetKeyDown(KeyCode.Space) &&
             Physics.Raycast(StateMachine.transform.position, Vector3.down, 1f, StateMachine.GroundLayer))
         {
+            StateMachine.MoveAnim.SetTrigger("Jump");
             StateMachine.SwitchState(new PlayerJumpState(StateMachine));
         }
     }
