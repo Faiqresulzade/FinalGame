@@ -19,6 +19,7 @@ TagManager:
   - FinishEmptyCollider
   - Missile
   - FloorSwitchFinish
+  - Canvas
   layers:
   - Default
   - TransparentFX

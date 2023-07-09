@@ -19,7 +19,7 @@ public class PlayerJumpState : PlayerBaseState
         
     public override void Tick(float deltaTime)
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if(StateMachine.joystick.Vertical <0.5)
         {
             StateMachine.SwitchState(new PlayerMoveState(StateMachine));
         }

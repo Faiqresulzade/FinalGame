@@ -11,6 +11,7 @@ public partial class UIManager : MonoBehaviour
     [SerializeField] private GameObject LobyPanel;
     [SerializeField] private GameObject Players;
     [SerializeField] private AudioSource BackroundMusic;
+    // [SerializeField] private AudioSource BackroundMusicInGame;
     [SerializeField] private Slider Slider;
     [SerializeField] private Image VolumeImage;
     [SerializeField] private Image VolumeImageInGame;
@@ -34,7 +35,7 @@ public partial class UIManager : MonoBehaviour
             return _instance;
         }
     }
-    public static int SelectedPlayer { get; set; } = 1;
+    public static int SelectedPlayer { get; set; }
 
     private void Awake()
     {
@@ -49,6 +50,9 @@ public partial class UIManager : MonoBehaviour
         });
 
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(BackroundMusic);
+
+        VolumeSliderInGame.value = 1f;
         Slider.value = 1f;
     }
 
@@ -103,9 +107,6 @@ public partial class UIManager : MonoBehaviour
         SettingsPanel.SetActive(false);
         LobyPanel.SetActive(true);
     }
-
-
-
 }
 
 public partial class UIManager : MonoBehaviour
@@ -117,6 +118,9 @@ public partial class UIManager : MonoBehaviour
 
     public void OnClickLobyBTN()
     {
+        BackroundMusic.volume = 0;
+        VolumeSliderInGame.value = 0;
+        PausePanel.SetActive(false);
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
@@ -125,7 +129,8 @@ public partial class UIManager : MonoBehaviour
     {
         PausePanel.gameObject.SetActive(true);
         PausePanelBTN.gameObject.SetActive(false);
-        Time.timeScale = 0;
+        GameObject.FindGameObjectWithTag("Canvas").SetActive(false);
+        //Time.timeScale = 0;
     }
 
     public void OnClickContinueBTN()
@@ -133,6 +138,7 @@ public partial class UIManager : MonoBehaviour
         PausePanel.gameObject.SetActive(false);
         PausePanelBTN.gameObject.SetActive(true);
         Time.timeScale = 1;
+        GameObject.FindGameObjectWithTag("Canvas").SetActive(true);
     }
 
     public void ChangeVolumeInGame()

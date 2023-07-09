@@ -12,7 +12,6 @@ public class PlayerSelector : MonoBehaviour
     void Start()
     {
         transform.GetChild(UIManager.SelectedPlayer).gameObject.SetActive(true);
-
     }
 
     private void Update()

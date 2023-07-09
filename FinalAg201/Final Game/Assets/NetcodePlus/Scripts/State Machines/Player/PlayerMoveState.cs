@@ -7,6 +7,7 @@ public class PlayerMoveState : PlayerBaseState
     private Vector3 _direction;
     private float _currentTurnAngle;
     private bool isOpenDoor;
+    private bool _isJump;
 
     public PlayerMoveState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -36,8 +37,8 @@ public class PlayerMoveState : PlayerBaseState
     public override void Tick(float deltaTime)
     {
 
-        _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        _direction = new Vector3(StateMachine.joystick.Horizontal, 0, StateMachine.joystick.Vertical);
+        Debug.Log(_direction.magnitude);
         if (_direction.magnitude > 0.01f)
         {
             float targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
@@ -58,11 +59,19 @@ public class PlayerMoveState : PlayerBaseState
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space) &&
-            Physics.Raycast(StateMachine.transform.position, Vector3.down, 1f, StateMachine.GroundLayer))
+        if (Physics.Raycast(StateMachine.transform.position, Vector3.down, 1f, StateMachine.GroundLayer))
         {
-            StateMachine.MoveAnim.SetTrigger("Jump");
-            StateMachine.SwitchState(new PlayerJumpState(StateMachine));
+            if (StateMachine.joystick.Vertical > 0.988 && !_isJump)
+            {
+                _isJump = true;
+                StateMachine.MoveAnim.SetTrigger("Jump");
+                StateMachine.SwitchState(new PlayerJumpState(StateMachine));
+            }
+
+        }
+        else
+        {
+            _isJump = false;
         }
     }
 

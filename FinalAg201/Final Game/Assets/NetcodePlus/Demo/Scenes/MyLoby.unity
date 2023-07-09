@@ -856,6 +856,10 @@ PrefabInstance:
       value: 0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 4276212085046319756, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
+      propertyPath: m_text
+      value: Character Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276212085046319756, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
       propertyPath: m_fontSize
       value: 34
       objectReference: {fileID: 0}
@@ -959,6 +963,10 @@ PrefabInstance:
       propertyPath: VolumeSliderInGame
       value: 
       objectReference: {fileID: 480799803148057146}
+    - target: {fileID: 4276212085213365455, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
+      propertyPath: BackroundMusicInGame
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4276212085213366068, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
       propertyPath: m_Name
       value: UiManager
@@ -1065,7 +1073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276212085642184176, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4276212085642184177, guid: 01f2dfa8101e0884b817b2a84dc3dc74, type: 3}
       propertyPath: m_SizeDelta.x
