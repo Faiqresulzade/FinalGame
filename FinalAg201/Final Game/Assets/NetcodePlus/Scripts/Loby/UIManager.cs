@@ -127,9 +127,10 @@ public partial class UIManager : MonoBehaviour
 
     public void OnClickPauseBTN()
     {
+        Debug.Log("hjkl");
         PausePanel.gameObject.SetActive(true);
         PausePanelBTN.gameObject.SetActive(false);
-        GameObject.FindGameObjectWithTag("Canvas").SetActive(false);
+        UIManagerinGame.canvas.SetActive(false);
         //Time.timeScale = 0;
     }
 
@@ -137,8 +138,8 @@ public partial class UIManager : MonoBehaviour
     {
         PausePanel.gameObject.SetActive(false);
         PausePanelBTN.gameObject.SetActive(true);
-        Time.timeScale = 1;
-        GameObject.FindGameObjectWithTag("Canvas").SetActive(true);
+
+       UIManagerinGame.canvas.SetActive(true);
     }
 
     public void ChangeVolumeInGame()
