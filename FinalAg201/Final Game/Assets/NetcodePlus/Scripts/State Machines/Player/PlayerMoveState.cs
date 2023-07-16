@@ -1,6 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-
 public class PlayerMoveState : PlayerBaseState
 {
 
@@ -84,18 +82,27 @@ public class PlayerMoveState : PlayerBaseState
     {
 
         UIOpenLever.SetActive(true);
-
-        if (Input.GetKeyDown(KeyCode.O) && !isOpenDoor)
+        Debug.Log(1234567890);
+        if (UIManagerinGame.Instance._isClick && !isOpenDoor)
         {
+            Debug.Log(98765432);
             isOpenDoor = true;
             animator.SetTrigger("OpenLever");
             Opendooranimator.SetTrigger("DoorOpen");
+            UIManagerinGame.Instance._isClick = false;
         }
 
         StateMachine.Wait(5f, () =>
         {
             isOpenDoor = false;
         });
+
+        //if (Input.GetKeyDown(KeyCode.O) && !isOpenDoor)
+        //{
+        //    isOpenDoor = true;
+        //    animator.SetTrigger("OpenLever");
+        //    Opendooranimator.SetTrigger("DoorOpen");
+        //}
     }
 
     private void OnDetectPuzzleCube(Collider other)
